@@ -1,5 +1,7 @@
 import { Button } from '@mantine/core';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useAddBuilds } from './hooks/useAddBuilds';
+
 
 interface House {
   name: string;
@@ -15,18 +17,6 @@ interface Houseprops {
 }
 
 const AddHouse: React.FC<Houseprops> = ({ count, setCount, setPlusSecond, trucHouse, houses }) => {
-
-  const PlusHouse = () => {
-    const houseCost = houses.length * 110 + 120 * 4;
-
-    if (count >= houseCost) {
-        const newHouse: House = { name: `House ${houses.length + 1}`, id: Date.now() };
-        trucHouse(newHouse);
-        setCount(prevCount => prevCount - houseCost);
-        setPlusSecond(prev => prev + 2);
-      }
-  };
-
   const housePrice = houses.length * 110 + 120 * 4;
 
   return (
@@ -34,7 +24,13 @@ const AddHouse: React.FC<Houseprops> = ({ count, setCount, setPlusSecond, trucHo
       {count < housePrice ? (
         <Button disabled>Add a house ({housePrice}$)</Button>
       ) : (
-        <Button onClick={PlusHouse}>Add a house ({housePrice}$)</Button>
+        <Button
+          onClick={() =>
+            useAddBuilds('House', houses, trucHouse, count, setCount, setPlusSecond, 110, 2, )
+          }
+        >
+          Add a house ({housePrice}$)
+        </Button>
       )}
     </>
   );

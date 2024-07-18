@@ -1,4 +1,6 @@
 import React from 'react';
+import file from '../assets/file.png'
+import './Houses.css'
 
 interface House {
   name: string;
@@ -12,12 +14,22 @@ interface HousesListProps {
 const Houses: React.FC<HousesListProps> = ({ houses }) => {
   return (
     <div>
-      <h2>Houses</h2>
-      <ul>
+      {houses.length > 0 ?(
+        <>
+        <h2>Houses</h2>
+        <div>{houses.length}</div>
+        <div  className='HorizontalflexHouse'>
+
         {houses.map((house) => (
-          <li key={house.id}>{house.name}</li>
+          <><div key={house.id}>{house.name}</div><img src={file}/></>
         ))}
-      </ul>
+        </div>
+
+          </> )
+         :
+          (
+          <></>
+      )}
     </div>
   );
 };

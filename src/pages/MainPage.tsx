@@ -1,94 +1,53 @@
-import { AppShell, Burger, Group, Skeleton, Text, Button } from '@mantine/core';
+import { AppShell, Burger, Group, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import AddMoney from '../components/AddMoney';
 import Money from '../components/Money';
 import AddHouse from '../components/AddHouse';
 import Houses from '../lists/Houses';
-import Restaurant from '../lists/Restaurant';
+import Restaurant from '../lists/Fastfoods';
 import AddRestaurant from '../components/AddRestaurant';
-
-interface House {
-  name: string;
-  id: number;
-}
-
-interface Restaurant {
-    name: string;
-    id: number;
-  }
+import { useCount } from '../components/hooks/useCount';
+import { usePlusSecond } from '../components/hooks/usePlusSecond';
+import { PlusMoney } from '../components/function/PlusMoney';
+import { Delete } from '../components/function/Delete';
+import { useHouses } from '../components/hooks/useHouses';
+import { useFastFoods } from '../components/hooks/useFastFoods';
+import { Bakery, House, Fastfood as FastFoodType, Market } from '../components/type';
+import { useBakeries } from '../components/hooks/useBakeries';
+import AddBakery from '../components/AddBakery';
+import Bakeries from '../lists/Bakeries';
+import AddMarket from '../components/AddMarket';
+import Markets from '../lists/Market';
 
 function MainPage() {
   const [opened, { toggle }] = useDisclosure();
 
-  const [count, setCount] = useState<number>(() => {
-    const savedCount = localStorage.getItem('count');
-    return savedCount !== null ? parseInt(savedCount) : 0;
-  });
-
-  const [plussecond, setPlusSecond] = useState<number>(() => {
-    const savedSecond = localStorage.getItem('seconds');
-    return savedSecond !== null ? parseInt(savedSecond) : 0;
-  });
-
+  const [count, setCount] = useCount();
   const intervalRef = useRef<number | null>(null);
+  const [plussecond, setPlusSecond] = usePlusSecond(setCount);
 
-  useEffect(() => {
-    localStorage.setItem('count', count.toString());
-  }, [count]);
-
-  useEffect(() => {
-    localStorage.setItem('seconds', plussecond.toString());
-  }, [plussecond]);
-
-  useEffect(() => {
-    if (plussecond > 0 && !intervalRef.current) {
-      intervalRef.current = window.setInterval(() => {
-        setCount(prevCount => prevCount + plussecond);
-      }, 1000) as unknown as number;
-    }
-
-    return () => {
-      if (intervalRef.current !== null) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, [plussecond]);
-
-  const PlusMoney = () => {
-    setCount(prevCount => prevCount + 10);
-  };
-
-  const Delete = () => {
-    localStorage.clear();
-    setCount(0);
-    setPlusSecond(0);
-    setHouses([])
-    setRestaurants([])
-    if (intervalRef.current !== null) {
-      clearInterval(intervalRef.current);
-      intervalRef.current = null;
-    }
-  };
-
-  const [houses, setHouses] = useState<House[]>(() => {
-    const savedHouses = localStorage.getItem('houses');
-    return savedHouses ? JSON.parse(savedHouses) : [];
-  });
+  const [houses, setHouses] = useHouses();
+  const [bakeries, setBakeries] = useBakeries();
+  const [fastfoods, setFastFoods] = useFastFoods();
+  const [markets, setMarkets] = useFastFoods();
 
   const trucHouse = (newHouse: House) => {
     setHouses(prevHouses => [...prevHouses, newHouse]);
   };
 
-  const [restaurants, setRestaurants] = useState<Restaurant[]>(() => {
-    const savedRestaurants = localStorage.getItem('houses');
-    return savedRestaurants ? JSON.parse(savedRestaurants) : [];
-  });
-
-  const trucRestaurant = (newRestaurant: Restaurant) => {
-    setRestaurants(prevRestaurants => [...prevRestaurants, newRestaurant]);
+  const trucBakery = (newBakery: Bakery) => {
+    setBakeries(prevBakeries => [...prevBakeries, newBakery]);
   };
+
+  const trucFastFood = (newFastFood: FastFoodType) => {
+    setFastFoods(prevFastFoods => [...prevFastFoods, newFastFood]);
+  };
+
+  const trucMarket = (newMarket: Market) => {
+    setMarkets(prevMarkets => [...prevMarkets, newMarket]);
+  };
+
   return (
     <AppShell
       layout="alt"
@@ -119,25 +78,35 @@ function MainPage() {
           setCount={setCount}
           setPlusSecond={setPlusSecond}
         />
-          <AddRestaurant
-          restaurants={restaurants}
-          trucRestaurant={trucRestaurant}
+        <AddBakery
+         bakeries={bakeries}
+         trucBakery={trucBakery}
+         count={count}
+         setCount={setCount}
+         setPlusSecond={setPlusSecond}
+        /> 
+        <AddRestaurant
+          fastfoods={fastfoods}
+          trucFastFood={trucFastFood}
           count={count}
           setCount={setCount}
           setPlusSecond={setPlusSecond}
         />
-        {Array(15)
-          .fill(0)
-          .map((_, index) => (
-            <Skeleton key={index} h={28} mt="sm" animate={false} />
-          ))}
+        <AddMarket
+          markets={markets}
+          trucMarket={trucMarket}
+          count={count}
+          setCount={setCount}
+          setPlusSecond={setPlusSecond}
+        />
       </AppShell.Navbar>
 
       <AppShell.Main>
-        Alt layout – Navbar and Aside are rendered on top on Header and Footer
-        <AddMoney onIncrement={PlusMoney} />
-        <Houses houses={houses} /> 
-        <Restaurant restaurants={restaurants}/>
+        <AddMoney onIncrement={() => PlusMoney(setCount)} />
+        <Houses houses={houses} />
+        <Bakeries bakeries={bakeries}/>
+        <Restaurant fastfoods={fastfoods} />
+        <Markets markets={markets}/>
       </AppShell.Main>
 
       <AppShell.Aside p="md">
@@ -145,7 +114,11 @@ function MainPage() {
       </AppShell.Aside>
 
       <AppShell.Footer p="md">
-        <Button onClick={Delete} variant="light" color="red">
+        <Button
+          onClick={() => Delete(setCount, setPlusSecond, setHouses,setBakeries, setFastFoods, setMarkets, intervalRef)}
+          variant="light"
+          color="red"
+        >
           Delete
         </Button>
         <Text>Footer</Text>
