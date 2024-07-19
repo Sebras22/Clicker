@@ -1,7 +1,6 @@
 import React from "react";
 import Market from "../assets/Market.png";
 import "./Market.css";
-import { Card, Image } from "@mantine/core";
 
 interface Market {
     name: string;

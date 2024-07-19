@@ -27,9 +27,13 @@ const AddHouse: React.FC<Houseprops> = ({
     return (
         <>
             {count < housePrice ? (
-                <Button disabled>Add a house ({housePrice}$)</Button>
+                <Button className="Button" disabled>
+                    Add a house ({housePrice}$)
+                </Button>
             ) : (
                 <Button
+                    bd={"none"}
+                    variant="transparent"
                     onClick={() =>
                         useAddBuilds(
                             "House",

@@ -27,9 +27,12 @@ const AddHotel: React.FC<Hotelprops> = ({
     return (
         <>
             {count < hotelPrice ? (
-                <Button disabled>Add a hotel ({hotelPrice}$)</Button>
+                <Button className="Button" disabled>
+                    Add a hotel ({hotelPrice}$)
+                </Button>
             ) : (
                 <Button
+                    bd={"none"}
                     variant="transparent"
                     onClick={() =>
                         useAddBuilds(

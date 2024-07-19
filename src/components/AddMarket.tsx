@@ -27,9 +27,13 @@ const AddMarket: React.FC<Marketprops> = ({
     return (
         <>
             {count < marketPrice ? (
-                <Button disabled>Add a market ({marketPrice}$)</Button>
+                <Button className="Button" disabled>
+                    Add a market ({marketPrice}$)
+                </Button>
             ) : (
                 <Button
+                    bd={"none"}
+                    variant="transparent"
                     onClick={() =>
                         useAddBuilds(
                             "market",

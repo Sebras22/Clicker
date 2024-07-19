@@ -1,0 +1,14 @@
+.Button{
+    background-color: red;
+    width: 2rem;
+    &:disabled,
+    &[data-disabled] {
+        border-color: none;
+        background-color: transparent;
+    }
+}
+/* .root(
+
+    border-color: none;
+) */
+

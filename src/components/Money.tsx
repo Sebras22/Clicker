@@ -1,3 +1,4 @@
+import { Text } from "@mantine/core";
 import React from "react";
 
 interface Moneyprops {
@@ -7,7 +8,7 @@ interface Moneyprops {
 const Money: React.FC<Moneyprops> = ({ count }) => {
     return (
         <div>
-            <p>Money : {count} $</p>
+            <Text>Money : {count} $</Text>
         </div>
     );
 };

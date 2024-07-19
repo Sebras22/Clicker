@@ -1,6 +1,6 @@
 .HorizontalFlexHotel{
     display: flex;
-    max-width: 65vw;
+    max-width: 62vw;
     height: 14rem;
     flex-direction: row;
     overflow: auto;

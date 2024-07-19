@@ -1,6 +1,7 @@
 import { Button } from "@mantine/core";
 import React from "react";
 import { useAddBuilds } from "./hooks/useAddBuilds";
+import "./ButtonStyle.css";
 
 interface Bakery {
     name: string;
@@ -27,9 +28,15 @@ const AddBakery: React.FC<Bakeryprops> = ({
     return (
         <>
             {count < bakeryPrice ? (
-                <Button disabled>Add a bakery ({bakeryPrice}$)</Button>
+                <Button className="Button" disabled>
+                    Add a bakery ({bakeryPrice}$)
+                </Button>
             ) : (
                 <Button
+                    bd={"none"}
+                    className="Button"
+                    variant="transparent"
+                    border-color="none"
                     onClick={() =>
                         useAddBuilds(
                             "Bakery",

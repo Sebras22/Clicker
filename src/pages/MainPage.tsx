@@ -30,6 +30,7 @@ import { useHotels } from "../components/hooks/useHotels";
 import AddHotel from "../components/AddHotel";
 import Hotels from "../lists/Hotels";
 import ButtonOrange from "../assets/ButtonOrange.png";
+import Header from "../assets/headerGame.png";
 import "./MainPage.css";
 
 function MainPage() {
@@ -90,13 +91,12 @@ function MainPage() {
                         hiddenFrom="sm"
                         size="sm"
                     />
-                    <Text>LOGO</Text>
+                    <Text className="logo">City Clicker</Text>
                     <Money count={count} />
                     <Text>Money by second : {plussecond} $</Text>
                 </Group>
             </AppShell.Header>
-
-            <AppShell.Navbar p="md">
+            <AppShell.Navbar p="sm">
                 <Group>
                     <Burger
                         opened={opened}
@@ -106,35 +106,47 @@ function MainPage() {
                     />
                     <Text>Navbar</Text>
                 </Group>
-                <AddHouse
-                    houses={houses}
-                    trucHouse={trucHouse}
-                    count={count}
-                    setCount={setCount}
-                    setPlusSecond={setPlusSecond}
-                />
-                <AddBakery
-                    bakeries={bakeries}
-                    trucBakery={trucBakery}
-                    count={count}
-                    setCount={setCount}
-                    setPlusSecond={setPlusSecond}
-                />
-                <AddFastfood
-                    fastfoods={fastfoods}
-                    trucFastFood={trucFastFood}
-                    count={count}
-                    setCount={setCount}
-                    setPlusSecond={setPlusSecond}
-                />
-                <AddMarket
-                    markets={markets}
-                    trucMarket={trucMarket}
-                    count={count}
-                    setCount={setCount}
-                    setPlusSecond={setPlusSecond}
-                />
-                <div className="HotelContainer">
+                <div className="Container">
+                    <img src={ButtonOrange} className="ButtonOrange" />
+                    <AddHouse
+                        houses={houses}
+                        trucHouse={trucHouse}
+                        count={count}
+                        setCount={setCount}
+                        setPlusSecond={setPlusSecond}
+                    />
+                </div>
+                <div className="Container">
+                    <img src={ButtonOrange} className="ButtonOrange" />
+                    <AddBakery
+                        bakeries={bakeries}
+                        trucBakery={trucBakery}
+                        count={count}
+                        setCount={setCount}
+                        setPlusSecond={setPlusSecond}
+                    />
+                </div>
+                <div className="Container">
+                    <img src={ButtonOrange} className="ButtonOrange" />
+                    <AddFastfood
+                        fastfoods={fastfoods}
+                        trucFastFood={trucFastFood}
+                        count={count}
+                        setCount={setCount}
+                        setPlusSecond={setPlusSecond}
+                    />
+                </div>
+                <div className="Container">
+                    <img src={ButtonOrange} className="ButtonOrange" />
+                    <AddMarket
+                        markets={markets}
+                        trucMarket={trucMarket}
+                        count={count}
+                        setCount={setCount}
+                        setPlusSecond={setPlusSecond}
+                    />
+                </div>
+                <div className="Container">
                     <img src={ButtonOrange} className="ButtonOrange" />
                     <AddHotel
                         hotels={hotels}
@@ -170,6 +182,7 @@ function MainPage() {
                             setHouses,
                             setBakeries,
                             setFastFoods,
+                            setHotels,
                             setMarkets,
                             intervalRef
                         )
