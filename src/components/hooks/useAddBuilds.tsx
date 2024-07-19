@@ -7,14 +7,16 @@ export const useAddBuilds = (
     setPlusSecond: React.Dispatch<React.SetStateAction<number>>,
     basePrice: number,
     secondIncrement: number
-  ) => {
-    const itemCost = items.length * basePrice + 120 * 4;
-  
+) => {
+    const itemCost = items.length * basePrice + 10 * 4;
+
     if (count >= itemCost) {
-      const newItem = { name: `${itemName} ${items.length + 1}`, id: Date.now() };
-      setItems(newItem);
-      setCount(prevCount => prevCount - itemCost);
-      setPlusSecond(prev => prev + secondIncrement);
+        const newItem = {
+            name: `${itemName} ${items.length + 1}`,
+            id: Date.now(),
+        };
+        setItems(newItem);
+        setCount((prevCount) => prevCount - itemCost);
+        setPlusSecond((prev) => prev + secondIncrement);
     }
-  };
-  
+};

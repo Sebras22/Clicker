@@ -2,52 +2,52 @@ import { Button } from "@mantine/core";
 import React from "react";
 import { useAddBuilds } from "./hooks/useAddBuilds";
 
-interface Market {
+interface Fastfood {
     name: string;
     id: number;
 }
 
-interface Marketprops {
-    markets: Market[];
-    trucMarket: (newMarket: Market) => void;
+interface Fastfoodprops {
+    fastfoods: Fastfood[];
+    trucFastFood: (newFastFood: Fastfood) => void;
     count: number;
     setCount: React.Dispatch<React.SetStateAction<number>>;
     setPlusSecond: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const AddMarket: React.FC<Marketprops> = ({
+const AddFastFood: React.FC<Fastfoodprops> = ({
     count,
     setCount,
     setPlusSecond,
-    trucMarket,
-    markets,
+    trucFastFood,
+    fastfoods,
 }) => {
-    const marketPrice = markets.length * 15 + 10 * 4;
+    const fastfoodPrice = fastfoods.length * 10 + 10 * 4;
 
     return (
         <>
-            {count < marketPrice ? (
-                <Button disabled>Add a market ({marketPrice}$)</Button>
+            {count < fastfoodPrice ? (
+                <Button disabled>Add a fastfood ({fastfoodPrice}$)</Button>
             ) : (
                 <Button
                     onClick={() =>
                         useAddBuilds(
-                            "market",
-                            markets,
-                            trucMarket,
+                            "Fastfood",
+                            fastfoods,
+                            trucFastFood,
                             count,
                             setCount,
                             setPlusSecond,
                             10,
-                            20
+                            4
                         )
                     }
                 >
-                    Add a market ({marketPrice}$)
+                    Add a fastfood ({fastfoodPrice}$)
                 </Button>
             )}
         </>
     );
 };
 
-export default AddMarket;
+export default AddFastFood;

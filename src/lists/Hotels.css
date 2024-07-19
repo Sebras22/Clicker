@@ -1,9 +1,14 @@
-.HorizontalflexMarket{
+.HorizontalFlexHotel{
     display: flex;
     max-width: 65vw;
-    height: 12rem;
+    height: 14rem;
     flex-direction: row;
     overflow: auto;
     white-space: nowrap; 
     border: 1px solid #f52323;
+}
+
+.Hotel{
+    width: 9rem;
+    height: 11rem;
 }

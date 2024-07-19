@@ -1,3 +1,13 @@
+.HorizontalFlexBakery{
+    display: flex;
+    max-width: 65vw;
+    height: 12rem;
+    flex-direction: row;
+    overflow: auto;
+    white-space: nowrap; 
+    border: 1px solid #f52323;
+}
+
 .Bakery{
     width: 9rem;
 }

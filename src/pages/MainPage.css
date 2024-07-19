@@ -1,0 +1,27 @@
+.Background{
+    background-image: url('../assets/gamebackground.jpg');
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
+    background-attachment: fixed; 
+}
+
+.HotelContainer{
+    margin-top: 10px;
+    position: relative;
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ButtonOrange{
+    position: absolute;
+    top: 10;
+    left: 10;
+    width: 14rem;
+    height: 8vh;
+    z-index: 0; 
+}
+

@@ -2,52 +2,53 @@ import { Button } from "@mantine/core";
 import React from "react";
 import { useAddBuilds } from "./hooks/useAddBuilds";
 
-interface Market {
+interface Hotel {
     name: string;
     id: number;
 }
 
-interface Marketprops {
-    markets: Market[];
-    trucMarket: (newMarket: Market) => void;
+interface Hotelprops {
+    hotels: Hotel[];
+    trucHotel: (newHotel: Hotel) => void;
     count: number;
     setCount: React.Dispatch<React.SetStateAction<number>>;
     setPlusSecond: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const AddMarket: React.FC<Marketprops> = ({
+const AddHotel: React.FC<Hotelprops> = ({
     count,
     setCount,
     setPlusSecond,
-    trucMarket,
-    markets,
+    trucHotel,
+    hotels,
 }) => {
-    const marketPrice = markets.length * 15 + 10 * 4;
+    const hotelPrice = hotels.length * 10 + 10 * 4;
 
     return (
         <>
-            {count < marketPrice ? (
-                <Button disabled>Add a market ({marketPrice}$)</Button>
+            {count < hotelPrice ? (
+                <Button disabled>Add a hotel ({hotelPrice}$)</Button>
             ) : (
                 <Button
+                    variant="transparent"
                     onClick={() =>
                         useAddBuilds(
-                            "market",
-                            markets,
-                            trucMarket,
+                            "Hotel",
+                            hotels,
+                            trucHotel,
                             count,
                             setCount,
                             setPlusSecond,
                             10,
-                            20
+                            2
                         )
                     }
                 >
-                    Add a market ({marketPrice}$)
+                    Add a hotel ({hotelPrice}$)
                 </Button>
             )}
         </>
     );
 };
 
-export default AddMarket;
+export default AddHotel;

@@ -4,18 +4,21 @@ export interface House {
 }
 
 export interface Bakery {
-   name: string;
-   id: number;
+    name: string;
+    id: number;
 }
-  
+
 export interface Fastfood {
-   name: string;
-   id: number;
+    name: string;
+    id: number;
 }
-  
 
 export interface Market {
     name: string;
     id: number;
- }
-   
+}
+
+export interface Hotel {
+    name: string;
+    id: number;
+}
