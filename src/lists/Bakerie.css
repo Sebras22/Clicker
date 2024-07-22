@@ -8,6 +8,13 @@
     border: 1px solid #f52323;
 }
 
+.Card{
+    margin: 10px;
+    background-color: #282828;
+    border-radius: 10px;
+}
+
+
 .Bakery{
     width: 9rem;
 }

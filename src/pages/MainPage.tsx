@@ -30,7 +30,7 @@ import { useHotels } from "../components/hooks/useHotels";
 import AddHotel from "../components/AddHotel";
 import Hotels from "../lists/Hotels";
 import ButtonOrange from "../assets/ButtonOrange.png";
-import Header from "../assets/headerGame.png";
+// import Header from "../assets/headerGame.png";
 import "./MainPage.css";
 
 function MainPage() {
@@ -72,7 +72,7 @@ function MainPage() {
             header={{ height: 60 }}
             footer={{ height: 60 }}
             navbar={{
-                width: 300,
+                width: 225,
                 breakpoint: "sm",
                 collapsed: { mobile: !opened },
             }}

@@ -9,6 +9,7 @@
 
 .Container{
     margin: 10px;
+    margin-left: -1px;
     position: relative;
     width: 100%;
     height: auto;

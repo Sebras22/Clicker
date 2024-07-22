@@ -1,6 +1,7 @@
 import React from "react";
 import Bakery from "../assets/Bakery.png";
 import "./Bakerie.css";
+import { Card } from "@mantine/core";
 
 interface Bakery {
     name: string;
@@ -21,7 +22,7 @@ const Bakeries: React.FC<BakeriesListProps> = ({ bakeries }) => {
                     <div className="HorizontalFlexBakery">
                         {bakeries.map((bakery) => (
                             <>
-                                <div>
+                                <div className="Card">
                                     <div key={bakery.id}>{bakery.name}</div>
                                     <img className="Bakery" src={Bakery} />
                                 </div>
