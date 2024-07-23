@@ -1,6 +1,7 @@
 import React from "react";
 import Market from "../assets/Market.png";
 import "./Market.css";
+import { Badge } from "@mantine/core";
 
 interface Market {
     name: string;
@@ -23,7 +24,16 @@ const Markets: React.FC<MarketsListProps> = ({ markets }) => {
                         {markets.map((market) => (
                             <>
                                 <div className="Card">
-                                    <div key={market.id}>{market.name}</div>
+                                    <div>
+                                        <Badge
+                                            key={market.id}
+                                            variant="outline"
+                                            color="blue"
+                                            radius="md"
+                                        >
+                                            {market.name}
+                                        </Badge>
+                                    </div>
                                     <img src={Market} alt="" />
                                 </div>
                             </>

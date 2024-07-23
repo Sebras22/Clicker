@@ -1,6 +1,7 @@
 import React from "react";
 import file from "../assets/file.png";
 import "./Houses.css";
+import { Badge } from "@mantine/core";
 
 interface House {
     name: string;
@@ -21,8 +22,17 @@ const Houses: React.FC<HousesListProps> = ({ houses }) => {
                     <div className="HorizontalflexHouse">
                         {houses.map((house) => (
                             <>
-                                <div>
-                                    <div key={house.id}>{house.name}</div>
+                                <div className="Card">
+                                    <div>
+                                        <Badge
+                                            key={house.id}
+                                            variant="outline"
+                                            color="blue"
+                                            radius="md"
+                                        >
+                                            {house.name}
+                                        </Badge>
+                                    </div>
                                     <img src={file} />
                                 </div>
                             </>

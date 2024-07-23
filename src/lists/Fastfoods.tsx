@@ -1,6 +1,7 @@
 import React from "react";
 import Burger from "../assets/Restaurant.png";
 import "./Fastfoods.css";
+import { Badge } from "@mantine/core";
 
 interface Fastfood {
     name: string;
@@ -23,8 +24,17 @@ const Fastfoods: React.FC<FastFoodsListProps> = ({ fastfoods }) => {
                     <div className="HorizontalflexFastfood">
                         {fastfoods.map((fastfood) => (
                             <>
-                                <div>
-                                    <div key={fastfood.id}>{fastfood.name}</div>
+                                <div className="Card">
+                                    <div>
+                                        <Badge
+                                            key={fastfood.id}
+                                            variant="outline"
+                                            color="blue"
+                                            radius="md"
+                                        >
+                                            {fastfood.name}
+                                        </Badge>
+                                    </div>
                                     <img src={Burger} />
                                 </div>
                             </>

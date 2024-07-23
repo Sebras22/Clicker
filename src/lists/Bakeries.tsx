@@ -1,7 +1,7 @@
 import React from "react";
 import Bakery from "../assets/Bakery.png";
 import "./Bakerie.css";
-import { Card } from "@mantine/core";
+import { Badge, Card } from "@mantine/core";
 
 interface Bakery {
     name: string;
@@ -23,7 +23,16 @@ const Bakeries: React.FC<BakeriesListProps> = ({ bakeries }) => {
                         {bakeries.map((bakery) => (
                             <>
                                 <div className="Card">
-                                    <div key={bakery.id}>{bakery.name}</div>
+                                    <div>
+                                        <Badge
+                                            key={bakery.id}
+                                            variant="outline"
+                                            color="blue"
+                                            radius="md"
+                                        >
+                                            {bakery.name}
+                                        </Badge>
+                                    </div>
                                     <img className="Bakery" src={Bakery} />
                                 </div>
                             </>
